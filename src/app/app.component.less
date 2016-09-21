@@ -1,0 +1,227 @@
+// +++++++++++++++++++++++++ BASICS +++++++++++++++++++++++++
+html, body {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    font-family: Arial;
+    overflow: hidden;
+}
+
+.applicationRoot {
+    background: repeating-linear-gradient(
+        45deg,
+        #FFFFFF,
+        #FFFFFF 10px,
+        #e7e7e7 10px,
+        #e7e7e7 20px
+        );
+    width: 100%;
+    height: 100%;
+}
+
+.centerDialog {
+    background: #038C8C;
+    color: #FFFFFF;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 10px;
+}
+
+header, footer {
+    background: #011C40 ;
+    color: #FFFFFF;
+}
+
+nav {
+    background: #026873;
+    color: #FFFFFF;
+}
+
+aside {
+    background: #038C8C;
+    color: #FFFFFF;
+}
+
+main {
+    background: #D9D7BA;
+}
+
+nav::after, main::after {
+    content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla.";
+}
+
+aside::after {
+    content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.";
+}
+
+.advancedHeader {
+    margin: 20px 0px;
+    background: #038C8C;    
+    font-size: 18pt;
+
+    & > * {
+        color: #FFFFFF;
+        margin: 10px;
+        padding: 10px;
+        background: #026873;
+    }
+
+    & .button {
+        background: #000000;
+        margin: 10px;
+        padding: 10px;
+    }
+}
+
+.buttonWrapper {
+    padding: 0px;
+}
+
+// +++++++++++++++++++++++++ OLD WAY - CENTER +++++++++++++++++++++++++
+
+// 1. Fixed background + dialog size -> position absolute
+.applicationRoot {
+    width: 600px;
+    height: 400px;
+}
+
+.centerDialog {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    left: 200px;
+    top: 150px;
+}
+
+// 2. Fixed dialog size, dynamic background -> position absolute, negativ margins
+/*.centerDialog {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -100px;
+    margin-top: -50px;
+}*/
+
+// 3. Dynamic dialog size, dynamic background -> table
+/*.applicationRoot {
+    display: table;
+}
+
+.centerDialog {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}*/
+
+// 4. Dynamic dialog size, dynamic background -> ghost element
+/*.applicationRoot {
+    text-align: center;
+}
+
+.applicationRoot:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.centerDialog {
+    display: inline-block;
+    vertical-align: middle;
+}*/
+
+// +++++++++++++++++++++++++ OLD WAY - HOLY GRAIL +++++++++++++++++++++++++
+
+// 1. Simple -> floats
+/*main, nav, aside {
+    position: relative;
+    float: left;
+}
+
+nav, aside {
+    width: 150px;
+}
+
+footer {
+    clear: both;
+}*/
+
+// 2. Fixed sides + floats -> Negativ margin + padding
+/*.holygrail-body {
+    padding-left: 200px;
+    padding-right: 150px;
+}
+
+main {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+nav {
+    position: relative;
+    float: left;
+    width: 200px;
+    right: 200px;
+    margin-left: -100%;
+}
+
+aside {
+    position: relative;
+    float: left;
+    width: 150px;
+    margin-right: -150px;
+}
+
+footer {
+    clear: both;
+}*/
+
+// +++++++++++++++++++++++++ FLEXBOX - HOLY GRAIL +++++++++++++++++++++++++
+
+/*header, footer, nav, main, aside {
+    padding: 20px;
+}
+
+.applicationRoot {
+    display: flex;
+    flex-direction: column;
+}
+
+.holygrail-body {
+    flex: 1 1 100%;
+    display: flex;
+}
+
+nav {
+    flex: 0 0 20%;
+    order: -1;
+}
+
+aside {
+    flex: 0 0 10%;
+    overflow: auto;
+}
+
+main {
+    flex: 1 1 100%;
+}*/
+
+// +++++++++++++++++++++++++ FLEXBOX - ADVANCED HEADER +++++++++++++++++++++++++
+
+/*.advancedHeader {
+    display: flex;
+
+    & > * {
+        flex: 0 0 auto;
+    }
+}
+
+.buttonWrapper {
+    flex: 1 1 100%;
+    display: flex;
+    justify-content: center;
+}*/
